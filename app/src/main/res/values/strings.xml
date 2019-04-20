@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Parking Zone MADDevs</string>
+
+    <!--Drawer-->
+    <string name="open_drawer">Drawer Open</string>
+    <string name="close_drawer">Drawer Close</string>
+
+    <!--Drawer Menus-->
+    <string name="history">History</string>
+    <string name="zones">Parking Zones</string>
+    <string name="about">About</string>
+
+    <string name="google_maps_api">AIzaSyAmnRxq3Gn09DoJNv1GgH3UDFMPta2IT9Q</string>
+
+    <string name="failed_to_load_zones">Failed To Load Zones</string>
+    <string name="link_to_repo">https://github.com/</string>
+    <string name="project_info">Hello,\n\nThis is a test task provided by MADDevs\nLink Belove is to the repo of this project</string>
+    <string name="failed_to_load">Failed to load</string>
+    <string name="park_here">Park Here</string>
+    <string name="park_here_question">Do you want to park here?</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit">Submit</string>
+    <string name="empty_screen">No history</string>
+    <string name="please_retry">Please retry</string>
+    <string name="retry">Retry</string>
+    <string name="stop_parking">Stop parking</string>
+</resources>

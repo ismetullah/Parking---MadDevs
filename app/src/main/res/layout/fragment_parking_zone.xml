@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="viewModel"
+                  type="com.ismet.parkingzonemaddevs.ui.parkingzone.fragment.ParkingZoneFragmentViewModel"/>
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
+        <LinearLayout
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+            <ImageButton
+                    android:id="@+id/backBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/large_margin"
+                    android:layout_marginStart="@dimen/large_margin"
+                    android:background="@android:color/transparent"
+                    android:tint="@color/grey_400"
+                    android:onClick="@{() -> viewModel.onNavBackClick()}"
+                    app:srcCompat="@drawable/ic_arrow_back"/>
+
+            <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/large_margin"
+                    android:layout_marginStart="@dimen/large_margin"
+                    android:text="@string/about"
+                    android:textColor="@color/grey_400"
+                    android:textSize="20sp"/>
+        </LinearLayout>
+
+        <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="vertical"
+                          android:layout_height="match_parent">
+                <com.synnapps.carouselview.CarouselView
+                        android:id="@+id/carouselView"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@color/grey_100"
+                        app:fillColor="@color/white"
+                        app:pageColor="@color/black"
+                        app:radius="6dp"
+                        app:slideInterval="3000"
+                        app:strokeColor="#FF777777"
+                        app:strokeWidth="1dp"/>
+
+                <TextView
+                        android:id="@+id/name"
+                        style="@style/TextStyle"
+                        android:textSize="24sp"
+                        android:text="@{viewModel.parkingZoneName}"
+                        android:layout_width="match_parent"
+                        android:layout_margin="@dimen/small_margin"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/capacity"
+                        style="@style/TextStyle"
+                        android:text="@{viewModel.parkingZoneCapacity}"
+                        android:layout_width="match_parent"
+                        android:textSize="16sp"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/parkedCarNumber"
+                        style="@style/TextStyle"
+                        android:text="@{viewModel.parkingZoneParkedCar}"
+                        android:layout_width="match_parent"
+                        android:textSize="16sp"
+                        android:layout_height="wrap_content"/>
+
+                <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/grey_100"
+                        android:layout_gravity="center"
+                        android:onClick="@{() -> viewModel.onParkHereClick()}"
+                        android:text="@string/park_here"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</layout>

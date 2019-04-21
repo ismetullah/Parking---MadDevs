@@ -23,9 +23,10 @@ constructor(context: Context, @PreferenceInfo prefFileName: String) : Preference
 
     override fun getCanAskToPark(): Boolean {
         val curPark = getCurrentParking()
+        val canAskToPark = mPrefs.getBoolean(PREF_KEY_CAN_ASK_TO_PARK, true)
         if (curPark != null)
-            return !curPark.isParking
-        return mPrefs.getBoolean(PREF_KEY_CAN_ASK_TO_PARK, true)
+            return !curPark.isParking && canAskToPark
+        return canAskToPark
     }
 
     override fun saveCanAskToPark(b: Boolean) {

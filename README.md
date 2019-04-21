@@ -12,7 +12,7 @@ This repository contains a prototype Android application for `Parking` developed
 * There is an activity to check the history of parkings. You can delete a parking event by sliding to left
 * Another activity is for the list of parking zones
 
-#Some features
+# Some features
 
 * Design Pattern: `MVVM`
 * Database: `Room Persistence Library`

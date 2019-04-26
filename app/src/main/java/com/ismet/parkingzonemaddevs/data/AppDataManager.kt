@@ -21,7 +21,15 @@ class AppDataManager @Inject constructor(
     private val dpHelper: DbHelper,
     private val preferenceHelper: PreferencesHelper
 ) : DataManager {
-    override fun getCurrentParking(): CurrentParking? {
+    override fun getIsTrackLocationEnabled(): Boolean {
+        return preferenceHelper.getIsTrackLocationEnabled()
+    }
+
+    override fun saveIsTrackLocationEnabled(b: Boolean) {
+        preferenceHelper.saveIsTrackLocationEnabled(b)
+    }
+
+    override fun getCurrentParking(): CurrentParking {
         return preferenceHelper.getCurrentParking()
     }
 

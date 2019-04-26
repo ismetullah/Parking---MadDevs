@@ -82,24 +82,12 @@ class ParkingZoneFragment : BaseFragment<FragmentParkingZoneBinding, ParkingZone
 
     override fun parkHere() {
         if (parkingZone != null) {
-            (getBaseActivity() as MainActivity).openParkDialog(parkingZone!!)
+            (getBaseActivity() as MainActivity).askToPark(parkingZone!!)
         }
     }
 
     override fun handleThrowable(m: Int) {
         Toast.makeText(context, m, Toast.LENGTH_SHORT).show()
-    }
-
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-    }
-
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    override fun onDetach() {
-        super.onDetach()
-        activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
     }
 
     companion object {

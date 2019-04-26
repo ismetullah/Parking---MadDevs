@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
->
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
-                name="viewModel"
-                type="com.ismet.parkingzonemaddevs.ui.parkingzone.ParkingZonesItemViewModel"/>
+            name="viewModel"
+            type="com.ismet.parkingzonemaddevs.ui.parkingzone.ParkingZonesItemViewModel" />
     </data>
 
     <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:backgroundTint="@color/grey_100"
-                android:onClick="@{() -> viewModel.onItemClick()}"
-                android:orientation="vertical"
-                app:cardCornerRadius="7dp"
-                app:cardElevation="4dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/grey_100"
+            android:onClick="@{() -> viewModel.onItemClick()}"
+            android:orientation="vertical"
+            app:cardCornerRadius="7dp"
+            app:cardElevation="4dp">
 
             <LinearLayout
-                    android:layout_width="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/very_large_margin">
+
+                <TextView
+                    android:id="@+id/parkingZoneName"
+                    style="@style/TextStyle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/very_large_margin">
+                    android:text="@{viewModel.parkingZoneName}"
+                    android:textColor="@color/black" />
 
                 <TextView
-                        android:id="@+id/parkingZoneName"
-                        style="@style/TextStyle"
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{viewModel.parkingZoneName}"/>
+                    android:id="@+id/capacity"
+                    style="@style/TextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.capacity}"
+                    android:textColor="@color/black" />
 
                 <TextView
-                        android:id="@+id/capacity"
-                        style="@style/TextStyle"
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{viewModel.capacity}"/>
-
-                <TextView
-                        android:id="@+id/parkedCarNumber"
-                        style="@style/TextStyle"
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{viewModel.parkedCarNumber}"/>
+                    android:id="@+id/parkedCarNumber"
+                    style="@style/TextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.parkedCarNumber}"
+                    android:textColor="@color/black" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </RelativeLayout>

@@ -1,6 +1,8 @@
 package com.ismet.parkingzonemaddevs.data.model
 
-data class CurrentParking(var isParking: Boolean = false, var canAskToUnPark: Boolean = true) {
+import java.io.Serializable
+
+data class CurrentParking(var isParking: Boolean = false, var canAskToStopPark: Boolean = true):Serializable {
 
     var entryTime: Long = 0
     var parkingZoneName: String? = null

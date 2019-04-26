@@ -1,37 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <import type="android.view.View"/>
-        <variable name="viewModel"
-                  type="com.ismet.parkingzonemaddevs.ui.parkingzone.ParkingZonesViewModel"/>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.ismet.parkingzonemaddevs.ui.parkingzone.ParkingZonesViewModel" />
     </data>
 
     <LinearLayout
-            android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar" />
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <include layout="@layout/toolbar"/>
-
-        <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
             <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    tools:listitem="@layout/item_parking_zones_view"/>
+                android:id="@+id/recView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                tools:listitem="@layout/item_parking_zones_view" />
 
             <androidx.core.widget.ContentLoadingProgressBar
-                    android:id="@+id/address_looking_up"
-                    style="?android:attr/progressBarStyleLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"/>
+                android:id="@+id/address_looking_up"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}" />
 
         </FrameLayout>
     </LinearLayout>

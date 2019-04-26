@@ -10,5 +10,5 @@ object AppConstants {
 
     val TIMESTAMP_FORMAT = "HH:mm:ss yyyy-MM-dd"
 
-    val ACTION_LOCATION_CHANGED = "LOCATION CHANGED"
+        val ACTION_NOTIFICATION_RECEIVED = "NOTIFICATION RECEIVED"
 }

@@ -51,6 +51,7 @@ class ParkingZonesActivity : BaseActivity<ActivityParkingZonesBinding, ParkingZo
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+        title = getString(R.string.zones)
         viewModel.setNavigator(this)
         adapter.setListener(this)
         setUp()

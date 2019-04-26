@@ -1,6 +1,5 @@
 package com.ismet.parkingzonemaddevs.ui.about
 
-import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -22,16 +21,18 @@ class AboutFragment : Fragment() {
         return view
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        }
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     override fun onDetach() {
         super.onDetach()
-        activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        }
     }
 
     companion object {

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.history.HistoryActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.ismet.parkingzonemaddevs.ui.settings.SettingsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey_100"
+            android:orientation="horizontal"
+            android:padding="@dimen/small_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enable_location_tracking"
+                android:textColor="@color/grey_400"
+                android:textSize="18sp" />
+
+            <Switch
+                android:id="@+id/locationSwitch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onCheckedChanged="@{(switch, checked) -> viewModel.onCheckedChanged(checked)}" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

@@ -89,6 +89,7 @@ dependencies {
 
     //carousel view
     implementation "com.synnapps:carouselview:$rootProject.carouselVersion"
+
     implementation 'com.google.maps.android:android-maps-utils:0.3+'
 }
 

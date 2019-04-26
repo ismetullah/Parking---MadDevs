@@ -13,8 +13,8 @@
     <string name="google_maps_api">AIzaSyAmnRxq3Gn09DoJNv1GgH3UDFMPta2IT9Q</string>
 
     <string name="failed_to_load_zones">Failed To Load Zones</string>
-    <string name="link_to_repo">https://github.com/</string>
-    <string name="project_info">Hello,\n\nThis is a test task provided by MADDevs\nLink Belove is to the repo of this project</string>
+    <string name="link_to_repo">https://github.com/ismetullah/Parking---MadDevs</string>
+    <string name="project_info">Hello,\n\nThis is a test task provided by MADDevs\n\nLink below is to the repo of this project</string>
     <string name="failed_to_load">Failed to load</string>
     <string name="park_here">Park Here</string>
     <string name="park_here_question">Do you want to park here?</string>
@@ -24,4 +24,12 @@
     <string name="please_retry">Please retry</string>
     <string name="retry">Retry</string>
     <string name="stop_parking">Stop parking</string>
+    <string name="notification_channel">Notification Channel</string>
+    <string name="ask_to_park">Do you want to park here?</string>
+    <string name="ask_to_stop_parking">Do you want to stop parking?</string>
+    <string name="stopped_parking">Stopped parking!</string>
+    <string name="stop_parking_first">Stop parking first!</string>
+    <string name="started_parking">Started parking!</string>
+    <string name="settings">Settings</string>
+    <string name="enable_location_tracking">Enable location tracking</string>
 </resources>

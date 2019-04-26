@@ -58,4 +58,10 @@ object CommonUtils {
     fun timeToString(time: Long): String {
         return DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(Date(time))
     }
+
+    fun hasBeenThreeMinutes(entryTime: Long): Boolean {
+        val diff = Date().time - entryTime
+        val min = diff / 1000
+        return min == 20L || min > 20L
+    }
 }

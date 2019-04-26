@@ -1,10 +1,12 @@
 package com.ismet.parkingzonemaddevs.ui.base
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -41,6 +43,9 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        }
         if (context is BaseActivity<*, *>) {
             val activity = context as BaseActivity<*, *>?
             this.mActivity = activity
@@ -63,6 +68,9 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
 
     override fun onDetach() {
         mActivity = null
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        }
         super.onDetach()
     }
 

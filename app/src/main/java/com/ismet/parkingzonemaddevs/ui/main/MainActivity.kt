@@ -43,6 +43,7 @@ import com.ismet.parkingzonemaddevs.ui.settings.SettingsActivity
 import com.ismet.parkingzonemaddevs.utils.AppConstants.ACTION_NOTIFICATION_RECEIVED
 import com.ismet.parkingzonemaddevs.utils.CommonUtils.timeToString
 import com.ismet.parkingzonemaddevs.utils.GoogleMapsUtils
+import com.ismet.parkingzonemaddevs.utils.GoogleMapsUtils.isLocationEnabled
 import com.ismet.parkingzonemaddevs.utils.NotificationHelper.NOTIFICATION_DATA
 import com.ismet.parkingzonemaddevs.utils.NotificationHelper.NOTIFICATION_REQUEST
 import dagger.android.AndroidInjector
@@ -62,6 +63,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
     @Inject
     lateinit var factory: ViewModelProviderFactory
+
+    private lateinit var locationReceiver: LocationNotificationReceiver
     private lateinit var mainViewModel: MainViewModel
     private lateinit var map: GoogleMap
     private var isActivityPaused = true
@@ -178,9 +181,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
             map.uiSettings.isMyLocationButtonEnabled = false
             locationButton.visibility = View.VISIBLE
             locationButton.setOnClickListener {
-                map.animateCamera(
-                    CameraUpdateFactory.newLatLngZoom(LatLng(map.myLocation.latitude, map.myLocation.longitude), 16f)
-                )
+                if (isLocationEnabled(this))
+                    map.animateCamera(
+                        CameraUpdateFactory.newLatLngZoom(
+                            LatLng(map.myLocation.latitude, map.myLocation.longitude),
+                            16f
+                        )
+                    )
             }
             enableTrackLocation()
         }
@@ -188,13 +195,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
     private fun enableTrackLocation() {
         startService(Intent(this, LocationTrackerService::class.java))
-        val br = LocationNotificationReceiver()
-        br.setListener(this)
+        locationReceiver = LocationNotificationReceiver()
+        locationReceiver.setListener(this)
         registerReceiver(br, IntentFilter(ACTION_NOTIFICATION_RECEIVED))
     }
 
     private fun disableTrackLocation() {
         stopService(Intent(this, LocationTrackerService::class.java))
+        unregisterReceiver()
     }
 
     override fun onPolygonClick(p0: Polygon?) {

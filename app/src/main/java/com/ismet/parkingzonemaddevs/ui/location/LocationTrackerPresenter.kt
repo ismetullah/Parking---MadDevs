@@ -15,15 +15,23 @@ import java.util.*
 
 class LocationTrackerPresenter(
     private var dataManager: DataManager,
-    private var schedulerProvider: SchedulerProvider,
-    private var view: LocationTrackerContract.View
+    private var schedulerProvider: SchedulerProvider
 ) :
     LocationTrackerContract.Presenter {
     private var parkingZones: List<ParkingZone> = ArrayList()
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
+    private var view: LocationTrackerContract.View? = null
 
     init {
         loadParkingZones()
+    }
+
+    fun bindView(view: LocationTrackerContract.View) {
+        this.view = view
+    }
+
+    fun getParkingZones(): List<ParkingZone> {
+        return parkingZones
     }
 
     private fun loadParkingZones() {
@@ -31,6 +39,7 @@ class LocationTrackerPresenter(
             dataManager
                 .getAllParkingZones()
                 .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
                 .subscribe { z -> if (z != null) parkingZones = z }
         )
     }
@@ -60,7 +69,7 @@ class LocationTrackerPresenter(
         if (currentParking.canAskToStopPark && currentParking.isParking) {
             currentParking.canAskToStopPark = false
             dataManager.saveCurrentParking(currentParking)
-            view.notifyToStopParking(currentParking)
+            view?.notifyToStopParking(currentParking)
         }
     }
 
@@ -95,7 +104,7 @@ class LocationTrackerPresenter(
 
         if (hasBeenThreeMinutes(lastEnteredZone.entryTime)) {
             Log.e("_____CHECK____", "ASk to park")
-            view.notifyToPark(parkingZone)
+            view?.notifyToPark(parkingZone)
             dataManager.saveCanAskToPark(false)
         }
     }

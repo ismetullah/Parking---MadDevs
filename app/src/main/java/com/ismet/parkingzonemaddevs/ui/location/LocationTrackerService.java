@@ -69,7 +69,8 @@ public class LocationTrackerService extends Service implements GoogleApiClient.C
     }
 
     private void initPresenter() {
-        presenter = new LocationTrackerPresenter(dataManager, schedulerProvider, this);
+        presenter = new LocationTrackerPresenter(dataManager, schedulerProvider);
+        presenter.bindView(this);
     }
 
     private void connectGoogleApiClient() {

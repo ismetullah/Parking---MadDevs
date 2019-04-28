@@ -64,7 +64,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     @Inject
     lateinit var factory: ViewModelProviderFactory
 
-    private lateinit var locationReceiver: LocationNotificationReceiver
+    private var locationReceiver: LocationNotificationReceiver? = null
+    private var isLocationTrackEnabled = false
     private lateinit var mainViewModel: MainViewModel
     private lateinit var map: GoogleMap
     private var isActivityPaused = true
@@ -159,10 +160,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     }
 
     override fun onTrackLocationDisabled() {
+        isLocationTrackEnabled = false
         disableTrackLocation()
     }
 
     override fun onTrackLocationEnabled() {
+        isLocationTrackEnabled = true
         enableMyLocation()
     }
 
@@ -195,14 +198,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
     private fun enableTrackLocation() {
         startService(Intent(this, LocationTrackerService::class.java))
-        locationReceiver = LocationNotificationReceiver()
-        locationReceiver.setListener(this)
-        registerReceiver(br, IntentFilter(ACTION_NOTIFICATION_RECEIVED))
+        registerLocationReceiver()
     }
 
     private fun disableTrackLocation() {
         stopService(Intent(this, LocationTrackerService::class.java))
-        unregisterReceiver()
+        locationButton.visibility = View.GONE
+        unregisterLocationReceiver()
     }
 
     override fun onPolygonClick(p0: Polygon?) {
@@ -370,11 +372,32 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     override fun onResume() {
         super.onResume()
         isActivityPaused = false
+        if (isLocationTrackEnabled)
+            registerLocationReceiver()
     }
 
     override fun onPause() {
         super.onPause()
         isActivityPaused = true
+        unregisterLocationReceiver()
+    }
+
+    private fun unregisterLocationReceiver() {
+        try {
+            if (locationReceiver != null)
+                unregisterReceiver(locationReceiver)
+            locationReceiver = null
+        } catch (e: Exception) {
+
+        }
+    }
+
+    private fun registerLocationReceiver() {
+        if (locationReceiver == null) {
+            locationReceiver = LocationNotificationReceiver()
+            locationReceiver?.setListener(this)
+            registerReceiver(locationReceiver, IntentFilter(ACTION_NOTIFICATION_RECEIVED))
+        }
     }
 
     companion object {

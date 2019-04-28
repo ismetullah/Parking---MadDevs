@@ -39,7 +39,7 @@ class LocationTrackerPresenter(
             dataManager
                 .getAllParkingZones()
                 .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
+                .observeOn(schedulerProvider.io())
                 .subscribe { z -> if (z != null) parkingZones = z }
         )
     }
